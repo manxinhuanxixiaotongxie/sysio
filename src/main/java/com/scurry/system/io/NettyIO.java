@@ -45,7 +45,7 @@ public class NettyIO {
     }
 }
 
-class MyInbound extends ChannelInboundHandlerAdapter{
+public class MyInbound extends ChannelInboundHandlerAdapter{
 
 //    @Override
 //    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

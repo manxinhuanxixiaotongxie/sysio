@@ -20,12 +20,21 @@ public class TestSocket {
 
     public void listen(int port) throws  IOException {
         serverSocket = new ServerSocket(port);
+        System.out.printf("Listening on port %d\n", port);
+        while (true) {
+            this.accept();
+        }
     }
 
-    public void accept(Socket socket) {
+    public void accept() throws IOException {
+        System.in.read();
+        Socket socket = serverSocket.accept();
+        System.out.printf("Accepted connection from %s\n", socket.getRemoteSocketAddress());
         new Thread(() -> {
             // 处理数据逻辑
             try {
+
+                System.out.printf("Connected to %s\n", socket.getRemoteSocketAddress());
                 InputStream inputStream = socket.getInputStream();
                 // 获取socket输入流
                 BufferedReader  br = new BufferedReader(new InputStreamReader(inputStream));
@@ -44,7 +53,6 @@ public class TestSocket {
         TestSocket testSocket = new TestSocket();
         // 监听端口
         testSocket.listen(8090);
-        testSocket.accept(testSocket.serverSocket.accept());
     }
 
 
