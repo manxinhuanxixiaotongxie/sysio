@@ -24,6 +24,7 @@ public class SocketIOPropertites {
     private static final int RECEIVE_BUFFER = 10;
     private static final int SO_TIMEOUT = 0;
     private static final boolean REUSE_ADDR = false;
+    // listen 允许连接队列
     private static final int BACK_LOG = 2;
     //client socket listen property on server endpoint:
     private static final boolean CLI_KEEPALIVE = false;
@@ -63,9 +64,13 @@ public class SocketIOPropertites {
         System.out.println("server up use 9090!");
         while (true) {
             try {
-                System.in.read();  //分水岭：
+                // 分水岭 阻塞
+                System.in.read();
 
+                // 此时FD还是没有的  tcpdump --nn -i ens160 -p 9090  能看到连接创建
+                // netstat -natp 可以看到连接创建 但是还没有分配进程
                 Socket client = server.accept();
+                // accept接受之后会在的Linux中创建FD
                 System.out.println("client port: " + client.getPort());
 
                 client.setKeepAlive(CLI_KEEPALIVE);
