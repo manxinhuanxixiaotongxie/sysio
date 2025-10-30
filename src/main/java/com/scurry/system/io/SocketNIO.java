@@ -1,4 +1,4 @@
-package src.main.java.com.scurry.system.io;
+package com.scurry.system.io;
 
 import java.net.InetSocketAddress;
 import java.net.StandardSocketOptions;
