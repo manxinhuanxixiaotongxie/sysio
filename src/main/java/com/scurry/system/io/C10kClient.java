@@ -4,6 +4,10 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 import java.util.LinkedList;
 
+/**
+ * 客户端代码
+ *
+ */
 public class C10kClient {
 
     public static void main(String[] args) throws InterruptedException {
@@ -13,6 +17,8 @@ public class C10kClient {
          * 对比传统Socket：非阻塞、可被选择器（Selector）管理等特性
          */
         LinkedList<SocketChannel> clients = new LinkedList<>();
+        // 定义服务端地址
+
         InetSocketAddress serverAddr = new InetSocketAddress("192.168.11.133", 9090);
         for (int i = 10000;i < 65000;i++) {
             Thread.sleep(100);
